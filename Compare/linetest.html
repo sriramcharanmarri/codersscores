@@ -1,0 +1,66 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+      
+      google.charts.load('current', {packages: ['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Profile');
+  data.addColumn('number', 'A');
+  data.addColumn('number', 'B');
+
+  // Add data for the coding profiles and their scores
+  data.addRows([
+    ['CodeChef', 85, 90],
+    ['LeetCode', 92, 88],
+    ['HackerRank', 78, 82],
+    ['Spoj', 87, 89],
+    ['GeeksforGeeks', 95, 91],
+    // Add more profiles and scores here
+  ]);
+
+  var options = {
+    title: 'Coding Profile Scores for Users A and B',
+    curveType: 'function', // Display as a line chart
+    hAxis: {
+      title: 'Profiles',
+    },
+    vAxis: {
+      title: 'Scores',
+      minValue: 0,
+    },
+    legend: 'top', // Move the legend to the top
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+  // Responsive design
+  var chartWrapper = new google.visualization.ChartWrapper({
+    chartType: 'LineChart',
+    dataTable: data,
+    options: options,
+    containerId: 'chart_div',
+  });
+
+  chartWrapper.draw();
+
+  // Add CSS for responsiveness
+  chartWrapper.getContainerId().style.width = '100%';
+  chartWrapper.getContainerId().style.margin = '0 auto';
+
+  // Handle window resize for responsiveness
+  window.addEventListener('resize', function () {
+    chartWrapper.draw();
+  });
+}
+
+  </script>
+</head>
+<body>
+    <div id="chart_div"></div>
+</body>
+</html>
+
